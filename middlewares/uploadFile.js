@@ -1,5 +1,4 @@
 const multer = require("multer");
-const fs = require("fs/promises");
 const path = require("path");
 
 const tempDir = path.join(__dirname, "../", "tmp");

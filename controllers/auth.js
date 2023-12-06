@@ -1,5 +1,5 @@
 const { User } = require("../models/user");
-const { ctrlWrapper, HttpError } = require("../helpers");
+const { ctrlWrapper, HttpError, resizeFile } = require("../helpers");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const gravatar = require("gravatar");
@@ -18,6 +18,7 @@ const register = async (req, res) => {
   }
   const hashPassword = await bcrypt.hash(password, 10);
   const avatarURL = gravatar.url(email);
+
   const newUser = await User.create({
     ...req.body,
     password: hashPassword,
@@ -89,6 +90,7 @@ const updateAvatar = async (req, res) => {
   const resultUpload = path.join(avatarsDir, filename);
   await fs.rename(tempUpload, resultUpload);
   const avatarURL = path.join("avatars", filename);
+
   await User.findByIdAndUpdate(_id, { avatarURL });
   res.json({
     avatarURL,
