@@ -8,6 +8,10 @@ const emailRegexp =
 
 const userSchema = new Schema(
   {
+    name: {
+      type: String,
+      required: [true, "Name is required"],
+    },
     password: {
       type: String,
       required: [true, "Password is required"],
@@ -46,6 +50,7 @@ userSchema.post("save", handleMongooseError);
 const User = model("user", userSchema);
 
 const registerSchema = Joi.object({
+  name: Joi.string().required(),
   password: Joi.string().required().min(6),
   email: Joi.string().required().pattern(emailRegexp),
   subscription: Joi.string()

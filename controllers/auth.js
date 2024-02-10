@@ -36,6 +36,7 @@ const register = async (req, res) => {
   // await sendEmail(emailOptions);
 
   res.status(201).json({
+    name: newUser.name,
     email: newUser.email,
     subscription: newUser.subscription,
   });
@@ -67,6 +68,7 @@ const login = async (req, res) => {
   res.json({
     token,
     user: {
+      name: user.name,
       email: user.email,
       subscription: user.subscription,
     },
@@ -74,9 +76,10 @@ const login = async (req, res) => {
 };
 
 const getCurrent = async (req, res) => {
-  const { email, subscription } = req.user;
+  const { name, email, subscription } = req.user;
 
   res.json({
+    name,
     email,
     subscription,
   });
