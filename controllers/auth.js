@@ -20,9 +20,15 @@ const register = async (req, res) => {
   const hashPassword = await bcrypt.hash(password, 10);
   const avatarURL = gravatar.url(email);
   // const verificationToken = nanoid();
+  const payload = {
+    id: user._id,
+  };
+
+  const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "23h" });
   const newUser = await User.create({
     ...req.body,
     password: hashPassword,
+    token,
     avatarURL,
     // verificationToken,
   });
