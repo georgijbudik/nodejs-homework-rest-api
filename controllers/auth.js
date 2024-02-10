@@ -20,18 +20,23 @@ const register = async (req, res) => {
   const hashPassword = await bcrypt.hash(password, 10);
   const avatarURL = gravatar.url(email);
   // const verificationToken = nanoid();
-  const payload = {
-    id: user._id,
-  };
 
-  const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "23h" });
   const newUser = await User.create({
     ...req.body,
     password: hashPassword,
-    token,
     avatarURL,
     // verificationToken,
   });
+
+  const { _id } = await User.findOne({ email });
+
+  const payload = { id: _id };
+  const tokenSign = jwt.sign(payload, SECRET_KEY, {
+    expiresIn: "23h",
+  });
+  await User.findByIdAndUpdate(_id, { token: tokenSign });
+
+  const { token } = await User.findOne({ email });
 
   // const emailOptions = {
   //   to: email,
@@ -42,9 +47,12 @@ const register = async (req, res) => {
   // await sendEmail(emailOptions);
 
   res.status(201).json({
-    name: newUser.name,
-    email: newUser.email,
-    subscription: newUser.subscription,
+    token,
+    user: {
+      name: newUser.name,
+      email: newUser.email,
+      subscription: newUser.subscription,
+    },
   });
 };
 

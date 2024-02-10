@@ -37,11 +37,11 @@ const addContact = async (req, res) => {
 
 const removeContact = async (req, res) => {
   const { id } = req.params;
-  const result = await Contact.findByIdAndDelete(id);
-  if (!result) {
+  const deletedContact = await Contact.findByIdAndDelete(id);
+  if (!deletedContact) {
     throw HttpError(404);
   }
-  res.json({ message: "Contact deleted" });
+  res.json({ message: "Contact deleted", deletedContact });
 };
 
 const updateContact = async (req, res) => {
