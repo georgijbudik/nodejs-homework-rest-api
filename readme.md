@@ -1,31 +1,39 @@
-## GoIT Node.js Course Template Homework
+# Phonebook Backend
+This backend project serves as the server-side implementation for a Phonebook web application. It is built using Node.js and the Express.js framework. The project provides APIs for managing contacts and user authentication.
 
-Виконайте форк цього репозиторію для виконання домашніх завдань (2-6)
-Форк створить репозиторій на вашому http://github.com
+# Project Overview
+## Contacts API
+Handles operations related to managing contacts in the phonebook.
 
-Додайте ментора до колаборації
+- List Contacts: Retrieve all contacts
+- Get Contact by ID: Retrieve details of a specific contact by ID
+- Add Contact: Create a new contact 
+- Remove Contact: Delete a contact by ID 
+- Update Contact: Modify contact details by ID 
+- Update Contact Favorite Status: Toggle the favorite status of a contact by ID
 
-Для кожної домашньої роботи створюйте свою гілку.
+## User Authentication API
+Manages user-related operations.
 
-- hw02
-- hw03
-- hw04
-- hw05
-- hw06
+- User Registration: Register a new user.
+- User Login: Authenticate and receive a token.
+- Get Current User: Retrieve details of the current authenticated user.
+- User Logout: Log out the current user.
+- Update User Subscription: Modify user subscription details 
+- Update User Avatar: Change user avatar
 
-Кожна нова гілка для др повинна робитися з master
+## References
 
-Після того, як ви закінчили виконувати домашнє завдання у своїй гілці, необхідно зробити пулл-реквест (PR). Потім додати ментора для рев'ю коду. Тільки після того, як ментор заапрувить PR, ви можете виконати мердж гілки з домашнім завданням у майстер.
+Frontend:
+[**PhoneBook**](https://georgijbudik.github.io/phonebook-react)
 
-Уважно читайте коментарі ментора. Виправте зауваження та зробіть коміт у гілці з домашнім завданням. Зміни підтягнуться у PR автоматично після того, як ви відправите коміт з виправленнями на github
-Після виправлення знову додайте ментора на рев'ю коду.
+Code:
+[**Repository**](https://github.com/georgijbudik/phonebook-react)
 
-- При здачі домашньої роботи є посилання на PR
-- JS-код чистий та зрозумілий, для форматування використовується Prettier
-
-### Команди:
-
-- `npm start` &mdash; старт сервера в режимі production
-- `npm run start:dev` &mdash; старт сервера в режимі розробки (development)
-- `npm run lint` &mdash; запустити виконання перевірки коду з eslint, необхідно виконувати перед кожним PR та виправляти всі помилки лінтера
-- `npm lint:fix` &mdash; та ж перевірка лінтера, але з автоматичними виправленнями простих помилок
+# Getting Started
+- Install dependencies: yarn install
+- Set up environment variables (e.g., database connection, secret key).
+- Run the server: yarn start:dev
+  
+# Technologies Used
+Node.js, Express.js, MongoDB, JWT for authentication, bcrypt for password hashing, Gravatar for avatars, Multer for handling avatars uploads
